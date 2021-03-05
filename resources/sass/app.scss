@@ -1,0 +1,78 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+$text-primary: rgba(0, 0, 0, 0.5);
+$text-secondary: rgba(0, 0, 0, 0.61);
+$light-bg: #ffffff;
+$shadow: #00000059 5px 2px 30px -10px;
+
+.root {
+  width: 100%;
+}
+
+/* header style */
+
+.header {
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  background-color: $light-bg;
+  position: fixed;
+  width: 100%;
+  box-shadow: $shadow;
+
+  .logo {
+    flex-grow: 2;
+  }
+  
+  .menu-box {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .menu-btn {
+      flex-grow: 1;
+      cursor: pointer;
+      background-color: none;
+      text-align: center;
+      color: $text-primary;
+      font-size: 14px;
+    }
+    
+    .menu-btn:hover {
+      color: $text-secondary;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+}
+
+
+/* content container */
+.content-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f3f3fa;
+  z-index: 90;
+  box-shadow: $shadow;
+}
+
+/* footer */
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  background-color: $light-bg;
+}
