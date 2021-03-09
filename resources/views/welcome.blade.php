@@ -22,7 +22,8 @@
         </style>
     </head>
     <body class="antialiased">
-        <div id="example"></div>
-        <script src="{{ asset('js/app.js') }}"></script>
+        <div id="Main"></div>
+        <!-- <script src="{{ mix('js/bundle.js') }}"></script> -->
+        <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

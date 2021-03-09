@@ -1,78 +1,160 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
-@import 'variables';
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+@import "variables";
+@import "~bootstrap/scss/bootstrap";
+@import "leaflet/dist/leaflet.css";
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css");
+@import "../js/components/home/home.scss";
+@import "../js/components/grafik/grafik.scss";
+@import "../js/components/login/login.scss";
+@import "../js//components/perkerasan/perkerasan.scss";
 
 $text-primary: rgba(0, 0, 0, 0.5);
 $text-secondary: rgba(0, 0, 0, 0.61);
 $light-bg: #ffffff;
+$content-bg: #f3f3fa;
 $shadow: #00000059 5px 2px 30px -10px;
+%sidebar-button {
+    cursor: pointer;
+    font-size: 30px;
+}
+%sidebar-global {
+    background-color: $text-primary;
+    ul {
+        list-style: none;
+        cursor: pointer;
+    }
+}
 
 .root {
-  width: 100%;
+    width: 100%;
 }
 
 /* header style */
 
 .header {
-  padding: 0px 10px 0px 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 50px;
-  background-color: $light-bg;
-  position: fixed;
-  width: 100%;
-  box-shadow: $shadow;
-
-  .logo {
-    flex-grow: 2;
-  }
-  
-  .menu-box {
-    flex-grow: 1;
+    padding: 0px 10px 0px 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    .menu-btn {
-      flex-grow: 1;
-      cursor: pointer;
-      background-color: none;
-      text-align: center;
-      color: $text-primary;
-      font-size: 14px;
-    }
-    
-    .menu-btn:hover {
-      color: $text-secondary;
-      font-size: 16px;
-      font-weight: 600;
-    }
-  }
-}
+    height: 50px;
+    background-color: $light-bg;
+    position: fixed;
+    width: 100%;
+    box-shadow: $shadow;
 
+    .logo {
+        flex-grow: 2;
+        img {
+            width: 100px;
+            margin-left: 10px;
+        }
+    }
+
+    .menu-box {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        .menu-btn {
+            flex-grow: 1;
+            cursor: pointer;
+            background-color: none;
+            text-align: center;
+            color: $text-primary;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .menu-btn:hover {
+            color: $text-secondary;
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+}
 
 /* content container */
 .content-container {
-  width: 100%;
-  min-height: 100vh;
-  background-color: #f3f3fa;
-  z-index: 90;
-  box-shadow: $shadow;
+    padding-top: 50px;
+    width: 100%;
+    min-height: 100vh;
+    background-color: $content-bg;
+    z-index: 90;
+    box-shadow: $shadow;
+    .map-container {
+        width: 500px;
+        max-height: 70vh;
+        position: absolute;
+    }
 }
 
 /* footer */
 .footer {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  height: 100px;
-  background-color: $light-bg;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    background-color: $light-bg;
+}
+
+.admin-container {
+    display: flex;
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+
+    @keyframes open-sidebar {
+        from {
+            width: 0px;
+        }
+        to {
+            width: 250px;
+        }
+    }
+
+    @keyframes close-sidebar {
+        from {
+            width: 250px;
+        }
+        to {
+            width: 0px;
+        }
+    }
+
+    .sidebar-open {
+        width: 250px;
+        animation-name: open-sidebar;
+        animation-duration: 0.5s;
+        @extend %sidebar-global;
+    }
+
+    .sidebar-close {
+        width: 0;
+        animation-name: close-sidebar;
+        animation-duration: 0.5s;
+        @extend %sidebar-global;
+    }
+
+    .admin-content {
+        flex-grow: 1;
+        background-color: $content-bg;
+        padding: 20px;
+        overflow: hidden;
+
+        .expand-button {
+            @extend %sidebar-button;
+            margin: 0 10px 10px 10px;
+            position: fixed;
+        }
+    }
+
+    .close-button {
+        @extend %sidebar-button;
+        display: flex;
+        justify-content: flex-end;
+        margin: 20px 10px 10px 10px;
+    }
 }
