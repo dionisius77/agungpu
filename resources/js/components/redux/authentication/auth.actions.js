@@ -1,7 +1,8 @@
-// import axios from "../../axiosInstance";
+import axios from "../../../axiosInstance";
 import AuthActionTypes from "./auth.types";
 
-// const loginUrl = `/v1/login`;
+const loginUrl = `/api/login`;
+const userUrl = `/api/user`;
 
 export const login = (email, password) => {
     return async (dispatch) => {
@@ -10,14 +11,19 @@ export const login = (email, password) => {
                 type: AuthActionTypes.LOGIN,
             });
 
-            // const res = await axios.post(loginUrl, {
-            //     email,
-            //     password,
-            // });
+            const getToken = await axios.post(loginUrl, {
+                email,
+                password,
+            });
+            const token = getToken.data.token;
 
+            const res = await axios.post(userUrl, {}, {
+                headers: token,
+            });
+            
             dispatch({
                 type: AuthActionTypes.LOGIN_SUCCESS,
-                payload: { email: email, password: password },
+                payload: { email: res.data.email, password: res.data.password },
             });
         } catch (err) {
             dispatch({
